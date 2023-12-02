@@ -59,7 +59,12 @@ def on_keyrelease(event):
     if event.char == 'a':  # 'a' 키를 떼면 녹음 종료
         recording = False
 
-root.bind('<KeyPress>', on_keypress)
-root.bind('<KeyRelease>', on_keyrelease)
+# root.bind('<KeyPress>', on_keypress)
+# root.bind('<KeyRelease>', on_keyrelease)
+
+button = tk.Button(root)
+button.bind("<Button-1>", on_keypress)
+button.bind("<ButtonRelease-1>", on_keyrelease)
+button.pack()
 
 root.mainloop()

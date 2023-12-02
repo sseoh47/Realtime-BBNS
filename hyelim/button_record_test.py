@@ -1,18 +1,20 @@
 import pyaudio
 import wave
-import tkinter as tk
+# import tkinter as tk
 import threading
+import RPi.GPIO as GPIO
 
 CHUNK = 1024
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
 WAVE_OUTPUT_FILENAME = r'C:\Users\y2h75\Desktop\record_output.wav'
+BUTTON_PIN = 18
 
 frames = []
 recording = False
 
-def start_recording():
+def Start_Recording():
     global frames
     frames = []
 
@@ -43,28 +45,18 @@ def start_recording():
     wf.writeframes(b''.join(frames))
     wf.close()
 
-root = tk.Tk()
-root.withdraw()  # tkinter 창 숨기기
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-def on_keypress(event):
-    global recording
-    if event.char == 'a':  # 'a' 키를 누르면 녹음 시작
-        if not recording: # 녹음 중이 아닐 때만 녹음 시작
+try:
+    while True:
+        button_state = GPIO.input(BUTTON_PIN)
+        if button_state == False and not recording:  # 버튼이 눌렸고 녹음 중이 아니면 녹음 시작
             recording = True
-            thread = threading.Thread(target=start_recording)
+            thread = threading.Thread(target=Start_Recording)
             thread.start()
-
-def on_keyrelease(event):
-    global recording
-    if event.char == 'a':  # 'a' 키를 떼면 녹음 종료
-        recording = False
-
-# root.bind('<KeyPress>', on_keypress)
-# root.bind('<KeyRelease>', on_keyrelease)
-
-button = tk.Button(root)
-button.bind("<Button-1>", on_keypress)
-button.bind("<ButtonRelease-1>", on_keyrelease)
-button.pack()
-
-root.mainloop()
+        elif button_state == True and recording:  # 버튼이 떼어지고 녹음 중이면 녹음 종료
+            recording = False
+            
+except KeyboardInterrupt:
+    GPIO.cleanup()  # 프로그램 종료 시 GPIO 설정 초기화

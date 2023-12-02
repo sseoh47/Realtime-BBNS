@@ -24,13 +24,13 @@ def start_recording():
                     input=True,
                     frames_per_buffer=CHUNK)
 
-    print('** 음성녹음 시작 **')
+    print('음성녹음 시작')
 
     while recording:  # recording이 True인 동안 계속 녹음
         data = stream.read(CHUNK)
         frames.append(data)
 
-    print('** 음성녹음 완료 **')
+    print('음성녹음 완료')
 
     stream.stop_stream()
     stream.close()

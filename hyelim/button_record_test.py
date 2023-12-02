@@ -9,7 +9,7 @@ FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
 # WAVE_OUTPUT_FILENAME = r'C:\Users\y2h75\Desktop\record_output.wav'
-WAVE_OUTPUT_FILENAME = r'home\hyelim\Realtime-BBNS\hyelim\record_output.wav'
+WAVE_OUTPUT_FILENAME = r'record_output.wav'
 BUTTON_PIN = 2
 
 frames = []

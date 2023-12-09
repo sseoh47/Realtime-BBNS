@@ -3,6 +3,7 @@ import wave
 # import tkinter as tk
 import threading
 import RPi.GPIO as GPIO
+import pygame
 
 CHUNK = 1024
 FORMAT = pyaudio.paInt16
@@ -58,6 +59,13 @@ try:
             thread.start()
         elif button_state == True and recording:  # 버튼이 떼어지고 녹음 중이면 녹음 종료
             recording = False
-            
+    
+    
 except KeyboardInterrupt:
     GPIO.cleanup()  # 프로그램 종료 시 GPIO 설정 초기화
+    
+pygame.mixer.music.load("./record_result.wav")
+pygame.mixer.music.play()
+
+while pygame.mixer.music.get_busy() == True:
+    continue

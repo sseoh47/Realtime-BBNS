@@ -59,6 +59,7 @@ try:
             thread.start()
         elif button_state == True and recording:  # 버튼이 떼어지고 녹음 중이면 녹음 종료
             recording = False
+            break
     
     
 except KeyboardInterrupt:

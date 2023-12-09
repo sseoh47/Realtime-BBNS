@@ -3,6 +3,7 @@ import wave
 import threading
 import RPi.GPIO as GPIO
 import pygame
+from client import Bus_Finder
 
 CHUNK = 1024
 FORMAT = pyaudio.paInt16
@@ -63,7 +64,9 @@ try:
 except KeyboardInterrupt:
     GPIO.cleanup()  # 프로그램 종료 시 GPIO 설정 초기화
 
-import 
+bus_finder = Bus_Finder()
+bus_finder.run_bus_finder()
+
 # pygame.mixer.init()
 # pygame.mixer.music.load(WAVE_OUTPUT_FILENAME)
 # pygame.mixer.music.play()

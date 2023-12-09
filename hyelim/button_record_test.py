@@ -65,6 +65,7 @@ try:
 except KeyboardInterrupt:
     GPIO.cleanup()  # 프로그램 종료 시 GPIO 설정 초기화
     
+pygame.mixer.init()
 pygame.mixer.music.load("./record_result.wav")
 pygame.mixer.music.play()
 

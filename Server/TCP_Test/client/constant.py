@@ -1,5 +1,7 @@
 
-TMAP_APPKEY = "P56mSqdnljg7fNjmu2BD5I1DEutBPcVazegTouZ8"
+TMAP_APPKEY = "6vggxo848T2ilJW9rBGDy1QgTrufgNimagn5fPiH"
+#
+#티맵키 교체 완료
 
 HOST = "172.20.10.4"
 PORT = 9999

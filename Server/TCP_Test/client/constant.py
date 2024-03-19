@@ -1,5 +1,5 @@
 
-TMAP_APPKEY = "6vggxo848T2ilJW9rBGDy1QgTrufgNimagn5fPiH"
+TMAP_APPKEY = "P56mSqdnljg7fNjmu2BD5I1DEutBPcVazegTouZ8"
 #
 #티맵키 교체 완료
 

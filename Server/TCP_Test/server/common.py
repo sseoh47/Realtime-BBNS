@@ -19,14 +19,14 @@ class Socket:
     # data = <데이터타입>:<본문>
     # head = 데이터 타입  ('FILE', "STRING")
     # body = 본문
-    def recive_data(self, buffuer_size = BUFFER_SIZE):
+    def receive_data(self, buffuer_size = BUFFER_SIZE):
         data:bytes = self.__socket.recv(buffuer_size)
         decoded_data = data.decode()
         head, body= self.__recognize_protocol(data = decoded_data)
         print(f"{head}Received Data : {body}")
         return head, body
     
-    def recive_file(self, buffuer_size = BUFFER_SIZE):
+    def receive_file(self, buffuer_size = BUFFER_SIZE):
         data:bytes = self.__socket.recv(buffuer_size)
         #decoded_data = data.decode()
         return data 
@@ -86,8 +86,9 @@ class Client(Socket):
     def set_head(self, head):
         self._data['head'] = head
         return 
-        
-    def set_BidnTarget(self, bid:str, target:str):
+    
+    #BindTarget으로 수정하기
+    def set_BindTarget(self, bid:str, target:str):
         self._data['bid'] = bid
         self._data['target'] = target
         return

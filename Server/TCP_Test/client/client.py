@@ -29,7 +29,7 @@ class TCP_Server:
             file_size = os.path.getsize(file_path)
             protocol = f'FILE:{file_size}'
             self.client_sock.sendall(protocol.encode())
-            recive = self.client_sock.recv(BUFFER_SIZE)
+            receive = self.client_sock.recv(BUFFER_SIZE)
             
             data = file.read(BUFFER_SIZE)
             while data:
@@ -74,7 +74,6 @@ class Bus_Finder():
         
         # 경로 까지 버스 검색
         self.__search_path(bid=bid, target=target)
-        
         try:
             self.tcp_connect.close_socket()
         except:
@@ -177,8 +176,3 @@ if __name__ == "__main__":
     bus_finder = Bus_Finder()
     bus_finder.run_bus_finder()
     
-    
-        
-    
-        
-        

@@ -2,10 +2,8 @@
 #import time
 #import shutil
 import speech_recognition as sr
-
 import re  # String 분석용도 
 import requests
-
 from constant import TMAP_APPKEY
 from model import Master_Model, Target
 

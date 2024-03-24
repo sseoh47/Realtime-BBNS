@@ -2,7 +2,6 @@ import pandas as pd
 import xml.etree.ElementTree as ET
 import pandas as pd
 from constant import TMAP_APPKEY
-
 import requests
 
 

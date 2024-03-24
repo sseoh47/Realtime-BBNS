@@ -79,19 +79,19 @@ class TCP_Server:
         FILE_NAME = f"./sample{client.get_client_id()}.wav"
 
         while not terminate_flag:
-            head, body = client.recive_data()
+            head, body = client.receive_data()
             client.send_data("FILE")
 
             if head == "FILE":
                 with open(FILE_NAME, 'wb') as file:
                     file_length = 0
-                    data = client.recive_file()   
+                    data = client.receive_file()   
                     while data :
                         file_length += len(data)
                         file.write(data)
                         if file_length >= int(body[0]):
                             break
-                        data = client.recive_file()
+                        data = client.receive_file()
                         
                 sleep(1)
                 save_path = f"./sample{client.get_client_id()}.wav" 
@@ -105,7 +105,7 @@ class TCP_Server:
                 bid = body[0]
                 target = body[1]
                 
-                client.set_BidnTarget(bid=bid, target=target)
+                client.set_BindTarget(bid=bid, target=target)
                 client.set_head("STRING")
                 client.dataCompletelyCame()
                 
@@ -124,12 +124,3 @@ class TCP_Server:
             client.send_result(client.get_data()['result'])
             client.dataReset()
             
-            
-            
-                
-            
-                
-        
-                
-    
-        

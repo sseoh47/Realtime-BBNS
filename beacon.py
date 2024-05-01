@@ -9,18 +9,6 @@ class Beacon:
     def callback(self, uuid, rssi, packet, additional_info):
         print("<%s, %d> %s %s" % (uuid, rssi, packet, additional_info))
 
-        if uuid=='station':
-            print("영남대 정류장")
-       
-            
-        
-        elif uuid=='bus':
-            if(rssi<=40):
-                print("들어오는 중")
-            elif(rssi>=70):
-                print("가까이 오는 중")
-            else:
-                print("버스 정차")
 
 
     def scan(self):

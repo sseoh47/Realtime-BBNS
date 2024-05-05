@@ -12,7 +12,7 @@ def parse_ibeacon_packet(packet):
         major = struct.unpack(">h", packet[25:27])[0]
         minor = struct.unpack(">h", packet[27:29])[0]
         tx_power = struct.unpack("b", packet[29:30])[0]
-        print("UUID: {}, Major: {}, Minor: {}, Tx Power: {}".format(uuid.hex(), major, minor, tx_power))
+        print("UUID: {}, Major: {}, Minor: {}, Tx Power: {}".format(uuid.hex, major, minor, tx_power))
 
 
 scanner = Scanner().withDelegate(ScanDelegate())

@@ -8,6 +8,7 @@ BUS = "e2c56db5-dffb-48d2-b060-d0f5a71096e0"
 class Beacon:
     def __init__(self):
         print("** beacon Searching Start **")
+        self.rssi_values = []  # RSSI 값 저장을 위한 리스트 초기화
 
     # def callback(self, uuid, rssi, packet, additional_info):
     #     print("<%s, %d> %s %s" % (uuid, rssi, packet, additional_info))
@@ -24,7 +25,7 @@ class Beacon:
             self.rssi_values.clear()  # 분석 후 RSSI 값 초기화
 
     def scan(self):
-        scanner = BeaconScanner(self.callback, device_filter=IBeaconFilter(major=40011), bt_device_id=0)
+        scanner = BeaconScanner(self.callback, device_filter=IBeaconFilter(major=40011))  #, bt_device_id=0)
         scanner.start()
 
         try:

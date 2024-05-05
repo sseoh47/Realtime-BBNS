@@ -21,7 +21,7 @@ class Beacon:
             distance_values = [self.rssi_to_distance(rssi) for rssi in self.rssi_values]
             filtered_distance = np.mean(distance_values)  # 평균 거리 계산
             
-            print("평균 거리 값:", filtered_distance)
+            print("avg distance:", filtered_distance)
             self.rssi_values.clear()  # 분석 후 RSSI 값 초기화
 
     def scan(self):

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from bluepy import Scanner, DefaultDelegate
+from bluepy.btle import Scanner, DefaultDelegate
 import struct
 
 class ScanDelegate(DefaultDelegate):

@@ -8,9 +8,9 @@ class ScanDelegate(DefaultDelegate):
 
     def handleDiscovery(self, dev, isNewDev, isNewData):
         if isNewDev:
-            print("New device:", dev.addr)
+            print("New device:", dev.addr, "RSSI: ", dev.rssi)
         elif isNewData:
-            print("New data from", dev.addr)
+            print("New data from", dev.addr, "RSSI: ", dev.rssi)
 
         for (adtype, desc, value) in dev.getScanData():
             if desc == 'Complete 128b Services' and value.startswith('fd6f'):

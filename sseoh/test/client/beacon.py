@@ -18,6 +18,7 @@ class ScanDelegate(DefaultDelegate):
                 client.send_beacon(SERVER_HOST, PORT, value, dev.rssi)
 
 if __name__ == "__main__":
+    client = Client()
     scanner = Scanner().withDelegate(ScanDelegate())
     try:
         while True:

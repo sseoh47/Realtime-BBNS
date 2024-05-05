@@ -67,8 +67,6 @@ class Client:
                 self.sock.close()
 
 
-if __name__ == "__main__":
-    client = Client()
 
     #xml파일 생성. 현재 위치에 대한 x,y좌표 값
     #client가 버튼 누르면 음성 녹음

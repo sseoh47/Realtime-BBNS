@@ -12,14 +12,11 @@ class ScanDelegate(DefaultDelegate):
         elif isNewData:
             print("New data from", dev.addr)
 
-        for (adtype, desc, value) in dev.getScanData():
-            if desc == 'Complete 128b Services' and value.startswith('fd6f'):
-                if value == desired_uuid:
-                    print("Desired UUID found:")
-                    print("UUID:", value)
-                    print("RSSI:", dev.rssi)
-                    return
-
 scanner = Scanner().withDelegate(ScanDelegate())
 devices = scanner.scan(10.0)  # 10초 동안 스캔
 
+for dev in devices:
+    for (adtype, desc, value) in dev.getScanData():
+        if desc == 'Complete 128b Services' and value.startswith('fd6f'):
+            print("UUID:", value)
+            print("RSSI:", dev.rssi)

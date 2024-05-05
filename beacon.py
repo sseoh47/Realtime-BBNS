@@ -17,4 +17,6 @@ class ScanDelegate(DefaultDelegate):
                 return
 
 scanner = Scanner().withDelegate(ScanDelegate())
-devices = scanner.scan()
+
+while True:
+    scanner.scan(3.0)  # 10초 동안 스캔

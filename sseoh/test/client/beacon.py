@@ -19,12 +19,14 @@ class ScanDelegate(DefaultDelegate):
                 print("RSSI:", dev.rssi)
                 client.send_beacon(SERVER_HOST, PORT, value, dev.rssi)
 
-if __name__ == "__main__":
-    client = Client()
-    scanner = Scanner().withDelegate(ScanDelegate())
     try:
         while True:
             devices = scanner.scan(3.0)  # 3초 동안 스캔
     except KeyboardInterrupt:
         print("Scanning stopped")
+
+if __name__ == "__main__":
+    client = Client()
+    scanner = Scanner().withDelegate(ScanDelegate())
+   
 

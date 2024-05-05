@@ -22,7 +22,7 @@ class Beacon:
             self.rssi_values.clear()
 
     def scan(self):
-        scanner = BeaconScanner(self.callback, device_filter=IBeaconFilter(major=40011))  #, bt_device_id=0)
+        scanner = BeaconScanner(self.callback, device_filter=IBeaconFilter(major=40011), bt_device_id=0)
         scanner.start()
 
         try:

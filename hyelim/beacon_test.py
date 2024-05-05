@@ -24,7 +24,7 @@ class Beacon:
             self.rssi_values.clear()  # 분석 후 RSSI 값 초기화
 
     def scan(self):
-        scanner = BeaconScanner(self.callback, device_filter=IBeaconFilter(), bt_device_id=0)
+        scanner = BeaconScanner(self.callback, device_filter=IBeaconFilter(major=40011), bt_device_id=0)
         scanner.start()
 
         try:

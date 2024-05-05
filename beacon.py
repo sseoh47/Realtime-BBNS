@@ -11,7 +11,7 @@ class ScanDelegate(DefaultDelegate):
             print("New data from", dev.addr)
 
 scanner = Scanner().withDelegate(ScanDelegate())
-devices = scanner.scan(10.0)  # 10초 동안 스캔
+devices = scanner.scan(10.0)
 
 for dev in devices:
     for (adtype, desc, value) in dev.getScanData():

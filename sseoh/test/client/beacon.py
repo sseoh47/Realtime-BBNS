@@ -12,12 +12,24 @@ class ScanDelegate(DefaultDelegate):
         print("beacon init")
 
     def handleDiscovery(self, dev, isNewDev, isNewData):
-        for (adtype, desc, value) in dev.getScanData():
-            print("for finding beacon")
-            if adtype == 9 and value in [BUS, STATION]:  # 조건 수정
-                print("Name:", value)
-                print("RSSI:", dev.rssi)
-                client.send_beacon(SERVER_HOST, PORT, value, dev.rssi)
+        try:
+            for (adtype, desc, value) in dev.getScanData():
+                print("for finding beacon")
+                if adtype == 9 and value in [BUS, STATION]:  # 조건 수정
+                    print("Name:", value)
+                    print("RSSI:", dev.rssi)
+                    client.send_beacon(SERVER_HOST, PORT, value, dev.rssi)
+        
+        except KeyboardInterrupt:
+            print("Scanning stopped")
+            
+        except Exception as e:
+            print(f"메시지 수신 중 오류 발생: {e}")
+            
+        finally:
+            if self.sock:
+                self.sock.close()
+            
 
 if __name__ == "__main__":
     client = Client()

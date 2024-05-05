@@ -1,8 +1,7 @@
 from bluepy.btle import Scanner, DefaultDelegate
 
-
-# 원하는 비콘의 UUID
-desired_uuid = "74278bda-b644-4520-8f0c-720eaf059935" # 여기에 원하는 UUID를 넣으세요
+# 원하는 비콘의 이름
+desired_name = "MyBeacon"  # 여기에 원하는 비콘의 이름을 넣으세요
 
 class ScanDelegate(DefaultDelegate):
     def __init__(self):
@@ -10,11 +9,12 @@ class ScanDelegate(DefaultDelegate):
 
     def handleDiscovery(self, dev, isNewDev, isNewData):
         for (adtype, desc, value) in dev.getScanData():
-            if value == desired_uuid:
-                print("Desired UUID found:")
-                print("UUID:", value)
+            if adtype == 9 and value == desired_name:
+                print("Desired Beacon found:")
+                print("Name:", value)
+                print("UUID:", dev.getValueText(7))
                 print("RSSI:", dev.rssi)
                 return
 
 scanner = Scanner().withDelegate(ScanDelegate())
-devices = scanner.scan(30.0) 
+devices = scanner.scan(10.0)  # 10초 동안 스캔

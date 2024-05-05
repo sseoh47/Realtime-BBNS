@@ -1,7 +1,7 @@
 from bluepy.btle import Scanner, DefaultDelegate
 
 # 원하는 비콘의 이름
-desired_name = "MyBeacon"  # 여기에 원하는 비콘의 이름을 넣으세요
+desired_name = "BUS"  # 여기에 원하는 비콘의 이름을 넣으세요
 
 class ScanDelegate(DefaultDelegate):
     def __init__(self):

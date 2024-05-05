@@ -12,6 +12,7 @@ class Client:
 
     # 비콘 이름, rssi는 비콘함수 추가 후 바꾸기
     def send_beacon(self, server_host, server_port, beacon_name, rssi):
+        print("send_beacon함수")
         try:
             # 서버에 접속
             self.sock = socket.create_connection((server_host, server_port))

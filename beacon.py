@@ -2,7 +2,7 @@ from bluepy.btle import Scanner, DefaultDelegate
 
 
 # 원하는 비콘의 UUID
-desired_uuid = "e2c56db5-dffb-48d2-b060-d0f5a71096e0" # 여기에 원하는 UUID를 넣으세요
+desired_uuid = "74278bda-b644-4520-8f0c-720eaf059935" # 여기에 원하는 UUID를 넣으세요
 
 class ScanDelegate(DefaultDelegate):
     def __init__(self):

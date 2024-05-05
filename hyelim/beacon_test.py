@@ -10,16 +10,8 @@ class Beacon:
         print("** beacon Searching Start **")
         self.rssi_values = []
     
-    def callback(self, bt_addr, rssi, packet, additional_info):
-        print(f"<{bt_addr}, {rssi}> {packet} {additional_info}")
-        self.rssi_values.append(rssi)
-        
-        if len(self.rssi_values) >= 10:
-            distance_values = [self.rssi_to_distance(rssi) for rssi in self.rssi_values]
-            filtered_distance = np.mean(distance_values)
-            
-            print("avg distance:", filtered_distance)
-            self.rssi_values.clear()
+    def callback(self, uuid, rssi, packet, additional_info):
+        print("<%s, %d> %s %s" % (uuid, rssi, packet, additional_info))
 
     def scan(self):
         scanner = BeaconScanner(self.callback, device_filter=IBeaconFilter(major=40011), bt_device_id=0)

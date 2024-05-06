@@ -29,7 +29,7 @@ class Client:
                 print("비콘정보전송")
                 data = f"{beacon_name},{rssi}"
                 self.sock.sendall(data.encode('utf-8'))
-                time.sleep(1)
+                time.sleep(3) # 비콘 정보 전송 중, ctrlC누르기 전 다시 시작하면?
 
         except KeyboardInterrupt:
             print('프로그램이 사용자에 의해 중단되었습니다.')

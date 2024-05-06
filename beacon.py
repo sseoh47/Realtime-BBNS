@@ -22,7 +22,7 @@ scanner = Scanner().withDelegate(ScanDelegate())
 try:
     while True:
         print("Scanning...")
-        devices = scanner.scan(3.0)  # 3초 동안 스캔
+        devices = scanner.scan(1.0)  # 3초 동안 스캔
         time.sleep(1)  # 필요에 따라 스캔 간에 잠시 대기할 수 있음
 except KeyboardInterrupt:
     print("Scanning stopped")

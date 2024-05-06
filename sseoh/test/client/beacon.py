@@ -28,7 +28,7 @@ class ScanDelegate(DefaultDelegate):
             
 
 if __name__ == "__main__":
-    client = Client()
+    client = Client(SERVER_HOST, PORT)
     scanner = Scanner().withDelegate(ScanDelegate())
     try:
         while True:

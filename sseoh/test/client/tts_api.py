@@ -1,8 +1,8 @@
 from constant import AUDIO
+from google.cloud import texttospeech        
 
 def text_to_speech(text):
     # "texttospeech import"
-    from google.cloud import texttospeech        
 
     client = texttospeech.TextToSpeechClient()
 

@@ -1,5 +1,4 @@
 from bluepy.btle import Scanner, DefaultDelegate
-import time
 from client import*  # 클라이언트 코드를 import
 from constant import*
 
@@ -19,15 +18,13 @@ class ScanDelegate(DefaultDelegate):
                     print("Name:", value)
                     print("RSSI:", dev.rssi)
                     client.send_beacon(SERVER_HOST, PORT, value, dev.rssi)
-        
+
         except KeyboardInterrupt:
             print("Scanning stopped")
-            
         except Exception as e:
             print(f"메시지 수신 중 오류 발생: {e}")
             
         
-            
             
 
 if __name__ == "__main__":

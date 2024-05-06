@@ -63,10 +63,8 @@ class Client:
 
         except Exception as e:
             print(f"메시지 수신 중 오류 발생: {e}")
-
-        finally:
-            if self.sock:
-                self.sock.close()
+        # 수신 중 오류 발생->소켓 닫음...->
+        
 
 
 

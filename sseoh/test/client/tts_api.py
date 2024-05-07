@@ -1,8 +1,13 @@
 from constant import AUDIO
 from google.cloud import texttospeech        
+import os
+
 
 
 def text_to_speech(text):
+
+
+    print(os.getenv('GOOGLE_APPLICATION_CREDENTIALS'))
 
     client = texttospeech.TextToSpeechClient()
     synthesis_input = texttospeech.types.SynthesisInput(text=text)

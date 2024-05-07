@@ -24,7 +24,6 @@ class ScanDelegate(DefaultDelegate):
         except Exception as e:
             print(f"메시지 수신 중 오류 발생: {e}")
             
-        
             
 
 if __name__ == "__main__":

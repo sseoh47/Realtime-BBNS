@@ -43,6 +43,7 @@ class Client:
 
     def receive_messages(self):
         try:
+            print("receive_messages 함수 시작")
             previous_beacon_name = None
             buffer = ""
             while True:
@@ -57,10 +58,12 @@ class Client:
                     current_beacon_name = message.strip()
 
                     if current_beacon_name != previous_beacon_name:
+                        print("tts 시작")
+                        print("current_beacon_name:",current_beacon_name)
                         text_to_speech(current_beacon_name)
                         # pip install playsound==1.2.2
                         playsound.playsound(AUDIO)
-                        #os.remove(AUDIO) #생성된 파일 제거 # 다중 접속할때 permisson denined.해결용
+                        os.remove(AUDIO) #생성된 파일 제거 # 다중 접속할때 permisson denined.해결용
                         previous_beacon_name = current_beacon_name
 
         except Exception as e:

@@ -6,10 +6,11 @@ BUS = "BUS"
 STATION = "YU_UNIV"
 
 class ScanDelegate(DefaultDelegate):
-    def __init__(self):
+    def __init__(self, client):
         DefaultDelegate.__init__(self)
-        self.current_thread = None  # current_thread 속성 초기화
-        self.is_active = False  # is_active 속성 초기화
+        self.client = client  # Client 인스턴스를 저장
+        self.current_thread = None
+        self.is_active = False
         print("beacon init")
 
     def send_beacon_in_thread(self, beacon_name, rssi):
@@ -18,14 +19,15 @@ class ScanDelegate(DefaultDelegate):
             self.current_thread.join()  # 현재 스레드가 종료될 때까지 기다림
 
         self.is_active = True
-        self.current_thread = threading.Thread(target=self.send_beacon, args=(beacon_name, rssi))  # 수정 필요: client.send_beacon -> self.send_beacon
+        # Client 인스턴스의 send_beacon 메소드를 호출
+        self.current_thread = threading.Thread(target=self.client.send_beacon, args=(beacon_name, rssi))
         self.current_thread.start()
 
     def handleDiscovery(self, dev, isNewDev, isNewData):
         try:
             for (adtype, desc, value) in dev.getScanData():
                 print("for finding beacon")
-                if adtype == 9 and value in [BUS, STATION]:  # 조건 수정 필요: BUS, STATION 값 정의 필요
+                if adtype == 9 and value in [BUS, STATION]:  # 조건 수정 필요: BUS와 STATION 값을 정의해야 합니다.
                     print("Name:", value)
                     print("RSSI:", dev.rssi)
                     self.send_beacon_in_thread(value, dev.rssi)
@@ -33,12 +35,11 @@ class ScanDelegate(DefaultDelegate):
         except KeyboardInterrupt:
             print("Scanning stopped")
         except Exception as e:
-            print(f"메시지 수신 중 오류 발생: {e}")
-    
+            print(f"Error occurred while receiving message: {e}")
 
 if __name__ == "__main__":
-    client = Client(SERVER_HOST, PORT)
-    scanner = Scanner().withDelegate(ScanDelegate())
+    client = Client(SERVER_HOST, PORT)  # 이 부분에서 Client 클래스를 인스턴스화
+    scanner = Scanner().withDelegate(ScanDelegate(client))  # Client 인스턴스를 ScanDelegate에 전달
     try:
         while True:
             print("scanner while")

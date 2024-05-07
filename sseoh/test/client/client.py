@@ -7,15 +7,13 @@ from beacon import*
 import os
 
 class Client:
-    def __init__(self,server_host, server_port,):
+    def __init__(self,server_host, server_port):
         print("클라이언트 연결됨")
          # 서버에 접속
         self.sock = socket.create_connection((server_host, server_port))
         print("서버에 연결되었습니다.")
 
-        # 메시지 수신을 위한 스레드 시작
-        receive_thread = threading.Thread(target=self.receive_messages)
-        receive_thread.start()
+       
     # init과 send_beacon 다시보기. 기존 send_beacon 안에 create_connection이 있었는데
     # send_beacon은 while문 내부에 있었음.
 
@@ -23,7 +21,9 @@ class Client:
     def send_beacon(self, server_host, server_port, beacon_name, rssi):
         print("send_beacon함수")
         try:
-           
+            # 메시지 수신을 위한 스레드 시작
+            receive_thread = threading.Thread(target=self.receive_messages)
+            receive_thread.start()
             while True:
                 # 비콘 이름과 RSSI 값을 문자열로 결합하여 서버에 전송
                 print("비콘정보전송")
@@ -64,7 +64,7 @@ class Client:
                         previous_beacon_name = current_beacon_name
 
         except Exception as e:
-            print(f"메시지 수신 중 오류 발생: {e}")
+            print(f"receive meessege 중 오류 발생: {e}")
         # 수신 중 오류 발생->소켓 닫음...->
         
 

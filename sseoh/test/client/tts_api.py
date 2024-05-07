@@ -1,17 +1,12 @@
 from constant import AUDIO
-# from gtts import gTTS
-
-# def text_to_speech(text):
-#     tts=gTTS(
-#         text=text,
-#         lang='ko',
-#         slow=False
-#     )
-#     tts.save(AUDIO)
 from google.cloud import texttospeech        
-
+from google.cloud import storage
+from google.oauth2 import service_account
 
 def text_to_speech(text):
+    # 왜 환경변수 설정이 안될까?
+    credentials = service_account.Credentials.from_service_account_file('/home/hyelim/bbns-416110-ea8d5da13b61.json')
+    client = storage.Client(credentials=credentials)
 
     client = texttospeech.TextToSpeechClient()
     synthesis_input = texttospeech.types.SynthesisInput(text=text)

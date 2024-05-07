@@ -4,7 +4,7 @@ import time
 from tts_api import*
 import playsound
 from beacon import*
-import os
+
 
 class Client:
     def __init__(self,server_host, server_port):
@@ -83,6 +83,9 @@ class Client:
 
         except Exception as e:
             print(f"receive meessege 중 오류 발생: {e}")
+
+        except KeyboardInterrupt:
+            print("stop receive messages")
         # 수신 중 오류 발생->소켓 닫음...->
         
 

@@ -3,12 +3,8 @@ from google.cloud import texttospeech
 import os
 
 
-
 def text_to_speech(text):
-
-
-    print(os.getenv('GOOGLE_APPLICATION_CREDENTIALS'))
-
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/hyelim/bbns-416110-ea8d5da13b61.json'
     client = texttospeech.TextToSpeechClient()
     synthesis_input = texttospeech.types.SynthesisInput(text=text)
 

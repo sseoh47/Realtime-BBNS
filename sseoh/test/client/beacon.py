@@ -26,7 +26,7 @@ class ScanDelegate(DefaultDelegate):
     def handleDiscovery(self, dev, isNewDev, isNewData):
         try:
             for (adtype, desc, value) in dev.getScanData():
-                print("for finding beacon")
+                #print("for finding beacon")
                 if adtype == 9 and value in [BUS, STATION]:  # 조건 수정 필요: BUS와 STATION 값을 정의해야 합니다.
                     print("Name:", value)
                     print("RSSI:", dev.rssi)

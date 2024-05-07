@@ -48,4 +48,4 @@ if __name__ == "__main__":
             print("scanner while")
             devices = scanner.scan(2.0)  # 2초 동안 스캔
     except KeyboardInterrupt:
-        print("Scanning stopped")
+        print("scann stop")

@@ -3,7 +3,7 @@ from gtts import gTTS
 
 def text_to_speech(text):
     tts=gTTS(
-        TEXT=text,
+        text=text,
         lang='ko',
         slow=False
     )

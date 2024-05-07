@@ -18,7 +18,7 @@ class Client:
     # send_beacon은 while문 내부에 있었음.
 
     # 비콘 이름, rssi는 비콘함수 추가 후 바꾸기
-    def send_beacon(self, server_host, server_port, beacon_name, rssi):
+    def send_beacon(self, beacon_name, rssi):
         print("send_beacon함수")
         try:
             # 메시지 수신을 위한 스레드 시작

@@ -17,7 +17,7 @@ class ScanDelegate(DefaultDelegate):
                 if adtype == 9 and value in [BUS, STATION]:  # 조건 수정
                     print("Name:", value)
                     print("RSSI:", dev.rssi)
-                    client.send_beacon(SERVER_HOST, PORT, value, dev.rssi)
+                    client.send_beacon(value, dev.rssi)
 
         except KeyboardInterrupt:
             print("Scanning stopped")

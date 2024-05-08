@@ -5,16 +5,12 @@ import pygame
 import wave
 
 def sound_out(AUDIO):
-  # pygame 초기화
-    pygame.init()
-    # 음악 파일 로드
+    pygame.mixer.init()
     pygame.mixer.music.load(AUDIO)
-    # 음악 재생
     pygame.mixer.music.play()
 
-    # 재생이 끝날 때까지 대기
-    while pygame.mixer.music.get_busy():
-        pygame.time.Clock().tick(10)
+    while pygame.mixer.music.get_busy() == True:
+        continue
 
 def text_to_speech(text):
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = GOOGLE_PATH

@@ -56,6 +56,8 @@ class Client:
         #         self.sock.close()
         #     print("클라이언트 종료")
 
+
+
     def receive_messages(self):
         try:
             print("receive_messages 함수 시작")
@@ -77,7 +79,7 @@ class Client:
                         text_to_speech(current_beacon_name)
                         # pip install playsound==1.2.2
                         print("mp3 재생")
-                        playsound.playsound(AUDIO)
+                        sound_out(AUDIO)
                         os.remove(AUDIO) #생성된 파일 제거 # 다중 접속할때 permisson denined.해결용
                         self.previous_beacon_name = current_beacon_name
 

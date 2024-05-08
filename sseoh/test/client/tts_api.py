@@ -1,26 +1,24 @@
-from constant import AUDIO
+from constant import*
 from google.cloud import texttospeech        
 import os
+import pygame
+import wave
 
+def sound_out(self, AUDIO):
+  # pygame 초기화
+    pygame.init()
+    # 음악 파일 로드
+    pygame.mixer.music.load(AUDIO)
+    # 음악 재생
+    pygame.mixer.music.play()
 
-def text_to_speech(text):
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/hyelim/bbns-416110-ea8d5da13b61.json'
+    # 재생이 끝날 때까지 대기
+    while pygame.mixer.music.get_busy():
+        pygame.time.Clock().tick(10)
+
+def text_to_speech(self,text):
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = GOOGLE_PATH
     client = texttospeech.TextToSpeechClient()
-    # synthesis_input = texttospeech.types.SynthesisInput(text=text)
-
-    # voice = texttospeech.types.VoiceSelectionParams(
-    #     language_code='ko-KR',
-    #     ssml_gender=texttospeech.enums.SsmlVoiceGender.FEMALE)
-
-    # audio_config = texttospeech.types.AudioConfig(
-    #     audio_encoding=texttospeech.enums.AudioEncoding.MP3)
-
-    # response = client.synthesize_speech(synthesis_input, voice, audio_config)
-
-    # with open(AUDIO, 'wb') as out:
-    #     out.write(response.audio_content)
-    #     print('Audio content written to file AUDIO')
-    
     
     # 최대 길이를 200으로 지정 (지나치게 길어지면 에러 발생)
     max_length = 200   

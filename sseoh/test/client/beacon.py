@@ -40,15 +40,20 @@ class ScanDelegate(DefaultDelegate):
         except Exception as e:
             print(f"Error occurred while receiving message: {e}")
 
+
+
+
+
+
 if __name__ == "__main__":
     client = Client(SERVER_HOST, PORT)  # 이 부분에서 Client 클래스를 인스턴스화
     #print("환경변수:",os.getenv('GOOGLE_APPLICATION_CREDENTIALS'))
-    button=Button()
+
     scanner = Scanner().withDelegate(ScanDelegate(client))  # Client 인스턴스를 ScanDelegate에 전달
     try:
         while True:
             print("scanner while")
             devices = scanner.scan(2.0)  # 2초 동안 스캔
-            
+
     except KeyboardInterrupt:
         print("scann stop")

@@ -3,14 +3,17 @@ from google.cloud import texttospeech
 import os
 import pygame
 import wave
-import pygame, time
+import simpleaudio as sa
 
-def sound_out():
-    pygame.mixer.init(frequency=44100, size=-16, channels=2)
-    pygame.mixer.music.load(AUDIO)
-    pygame.mixer.music.play()
-    while pygame.mixer.music.get_busy():
-        pygame.time.Clock().tick(10)  # CPU 사용량을 줄이기 위해 일시 정지
+def play_wave(AUDIO):
+    try:
+        wave_obj = sa.WaveObject.from_wave_file(AUDIO)
+        play_obj = wave_obj.play()
+        play_obj.wait_done()  # 재생이 끝날 때까지 기다립니다.
+    except Exception as e:
+        print(f"An error occurred while trying to play the audio file: {e}")
+
+
 
 
 def text_to_speech(text):

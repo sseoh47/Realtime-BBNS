@@ -3,13 +3,15 @@ from google.cloud import texttospeech
 import os
 import pygame
 import wave
+import pygame, time
 
 def sound_out():
     pygame.mixer.init()
     pygame.mixer.music.load(AUDIO)
     pygame.mixer.music.play()
-    while pygame.mixer.music.get_busy() == True:
-        continue
+    while pygame.mixer.music.get_busy():
+        pygame.time.Clock().tick(10)  # CPU 사용량을 줄이기 위해 일시 정지
+
 
 def text_to_speech(text):
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = GOOGLE_PATH

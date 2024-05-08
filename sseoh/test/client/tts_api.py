@@ -5,8 +5,6 @@ import pygame
 import wave
 
 
-
-
 def text_to_speech(text):
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = GOOGLE_PATH
     client = texttospeech.TextToSpeechClient()

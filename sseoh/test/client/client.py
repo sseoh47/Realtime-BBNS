@@ -82,7 +82,7 @@ class Client:
                         text_to_speech(current_beacon_name)
                         # pip install playsound==1.2.2
                   
-                        audio = AudioSegment.from_wav("output.wav")
+                        audio = AudioSegment.from_wav(AUDIO)
                         play(audio)
 
                         # playsound.playsound(AUDIO)

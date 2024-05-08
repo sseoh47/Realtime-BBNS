@@ -80,7 +80,7 @@ class Client:
                         text_to_speech(current_beacon_name)
                         # pip install playsound==1.2.2
                         print("mp3 재생")
-                        playsound.playsound(AUDIO)
+                        playsound.playsound(".//audio//output.wav")
                         os.remove(AUDIO) #생성된 파일 제거 # 다중 접속할때 permisson denined.해결용
                         self.previous_beacon_name = current_beacon_name
 

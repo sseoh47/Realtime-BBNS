@@ -3,15 +3,6 @@ from google.cloud import texttospeech
 import os
 import pygame
 import wave
-import simpleaudio as sa
-
-def play_wave(AUDIO):
-    try:
-        wave_obj = sa.WaveObject.from_wave_file(AUDIO)
-        play_obj = wave_obj.play()
-        play_obj.wait_done()  # 재생이 끝날 때까지 기다립니다.
-    except Exception as e:
-        print(f"An error occurred while trying to play the audio file: {e}")
 
 
 

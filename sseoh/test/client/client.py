@@ -18,7 +18,8 @@ class Client:
         self.receive_thread_running = False
         self.previous_beacon_name = None
         self.buffer = ""
-        
+        # 버스처리용 데이터
+        self._data = {'head':'default', 'bid':'-1', 'target':'default', "result":"None"}
        
     # init과 send_beacon 다시보기. 기존 send_beacon 안에 create_connection이 있었는데
     # send_beacon은 while문 내부에 있었음.
@@ -79,7 +80,7 @@ class Client:
                         text_to_speech(current_beacon_name)
                         # pip install playsound==1.2.2
                         print("mp3 재생")
-                        sound_out()
+                        playsound(AUDIO)
                         os.remove(AUDIO) #생성된 파일 제거 # 다중 접속할때 permisson denined.해결용
                         self.previous_beacon_name = current_beacon_name
 

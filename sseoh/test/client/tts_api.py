@@ -4,7 +4,7 @@ import os
 import pygame
 import wave
 
-def sound_out(self, AUDIO):
+def sound_out(AUDIO):
   # pygame 초기화
     pygame.init()
     # 음악 파일 로드
@@ -16,7 +16,7 @@ def sound_out(self, AUDIO):
     while pygame.mixer.music.get_busy():
         pygame.time.Clock().tick(10)
 
-def text_to_speech(self,text):
+def text_to_speech(text):
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = GOOGLE_PATH
     client = texttospeech.TextToSpeechClient()
     

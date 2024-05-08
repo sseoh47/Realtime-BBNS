@@ -6,7 +6,7 @@ import wave
 import pygame, time
 
 def sound_out():
-    pygame.mixer.init()
+    pygame.mixer.init(frequency=44100, size=-16, channels=2)
     pygame.mixer.music.load(AUDIO)
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy():

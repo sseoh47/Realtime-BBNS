@@ -3,7 +3,10 @@ from send import*
 class ClientLinkedList:
     def __init__(self):
         self.head = None
-
+        self._data = {'head':'default', 'bid':'-1', 'target':'default', "result":"None"}
+        self._flag = "Default"
+        self._thread = None
+        
     def add(self, new_node):
         if not self.head:
             self.head = new_node

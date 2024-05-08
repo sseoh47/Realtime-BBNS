@@ -93,9 +93,8 @@ class Client:
 
 
 
-    #xml파일 생성. 현재 위치에 대한 x,y좌표 값
-    #client가 버튼 누르면 음성 녹음
-    # xml 파일 생성 코드X, button은 임의로 코드 만듦.
+    #xml파일 생성. 현재 위치에 대한 x,y좌표 값 ->POI
+    #client가 버튼 누르면 음성 녹음 -> button
     # 새로 추가한 soundout 실행 확인 후, receive 이후 tts 출력까지 후 계속 비콘 정보만 전송되는지 확인!
 
     #->녹음된 음성 SST API(음성을 텍스트로 바꿈)후, POI API&대중교통 API()

@@ -82,8 +82,8 @@ class Client:
                         text_to_speech(current_beacon_name)
                         # pip install playsound==1.2.2
                   
-                        audio = AudioSegment.from_file(AUDIO, format='mp3')
-                        play(audio)
+                        # audio = AudioSegment.from_file(AUDIO, format='mp3')
+                        # play(audio)
 
                         playsound.playsound(AUDIO)
                         print("mp3 재생")

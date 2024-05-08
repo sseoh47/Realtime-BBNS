@@ -4,6 +4,8 @@ import time
 from tts_api import*
 import playsound
 from beacon import*
+from pydub import AudioSegment
+from pydub.playback import play
 
 
 class Client:
@@ -79,7 +81,10 @@ class Client:
                         print("current_beacon_name:",current_beacon_name)
                         text_to_speech(current_beacon_name)
                         # pip install playsound==1.2.2
-                        play_wave(AUDIO)
+                  
+                        audio = AudioSegment.from_wav(AUDIO)
+                        play(audio)
+
                         # playsound.playsound(AUDIO)
                         print("mp3 재생")
                         #os.remove(AUDIO) #생성된 파일 제거 # 다중 접속할때 permisson denined.해결용

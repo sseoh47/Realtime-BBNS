@@ -2,9 +2,11 @@ from bluepy.btle import Scanner, DefaultDelegate
 from client import*  # 클라이언트 코드를 import
 from constant import*
 import os
+from button import*
+
 
 BUS = "BUS"  
-STATION = "YU_UNIV"
+STATION = "YU_UNIV" #다시 확인하기
 
 class ScanDelegate(DefaultDelegate):
     def __init__(self, client):
@@ -28,7 +30,7 @@ class ScanDelegate(DefaultDelegate):
         try:
             for (adtype, desc, value) in dev.getScanData():
                 #print("for finding beacon")
-                if adtype == 9 and value in [BUS, STATION]:  # 조건 수정 필요: BUS와 STATION 값을 정의해야 합니다.
+                if adtype == 9 and value in [BUS, STATION]:  # 조건 수정 필요
                     print("Name:", value)
                     print("RSSI:", dev.rssi)
                     self.send_beacon_in_thread(value, dev.rssi)
@@ -41,11 +43,12 @@ class ScanDelegate(DefaultDelegate):
 if __name__ == "__main__":
     client = Client(SERVER_HOST, PORT)  # 이 부분에서 Client 클래스를 인스턴스화
     #print("환경변수:",os.getenv('GOOGLE_APPLICATION_CREDENTIALS'))
-
+    button=Button()
     scanner = Scanner().withDelegate(ScanDelegate(client))  # Client 인스턴스를 ScanDelegate에 전달
     try:
         while True:
             print("scanner while")
             devices = scanner.scan(2.0)  # 2초 동안 스캔
+            
     except KeyboardInterrupt:
         print("scann stop")

@@ -4,7 +4,7 @@ import os
 import pygame
 import wave
 
-def sound_out(AUDIO):
+def sound_out():
     pygame.mixer.init()
     pygame.mixer.music.load(AUDIO)
     pygame.mixer.music.play()

@@ -6,5 +6,5 @@ PORT = 5555
 #BEACON_NAME="STATION"
 #RSSI='-70'
 BUFFER_SIZE = 1024
-AUDIO='./audio/output.mp3'
+AUDIO='./audio/output.wav'
 GOOGLE_PATH='/home/hyelim/bbns-416110-ea8d5da13b61.json'

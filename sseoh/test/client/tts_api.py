@@ -4,13 +4,23 @@ import os
 import pygame
 import wave
 
+# pygame 사용
+def sound():
+    pygame.mixer.init()
+    pygame.mixer.music.load(AUDIO)
+
+    pygame.mixer.music.play()
+
+    while pygame.mixer.music.get_busy() == True:
+        continue
+
 
 def text_to_speech(text):
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = GOOGLE_PATH
     client = texttospeech.TextToSpeechClient()
-    
+
     # 최대 길이를 200으로 지정 (지나치게 길어지면 에러 발생)
-    max_length = 200   
+    max_length = 200
     # . 단위로 문장 분리
     words = text.split('. ')
     sentences = []
@@ -24,7 +34,6 @@ def text_to_speech(text):
     if current_sentence:
         sentences.append(current_sentence.strip() + '.')
 
-    
     # 빈 배열 생성
     audio_data = []
 
@@ -40,7 +49,7 @@ def text_to_speech(text):
         )
 
         audio_config = texttospeech.AudioConfig(
-            audio_encoding=texttospeech.AudioEncoding.MP3
+            audio_encoding=texttospeech.AudioEncoding.LINEAR16  # MP3 대신 WAV 포맷으로 변경
         )
 
         response = client.synthesize_speech(
@@ -48,10 +57,10 @@ def text_to_speech(text):
         )
 
         audio_data.append(response.audio_content)
-  
+
     audio_data = b"".join(audio_data)
-    
-    # audio 폴더 안에 output.mp3라는 이름으로 파일 생성
-    with open(AUDIO, "wb") as out:        
+
+    # audio 폴더 안에 output.wav라는 이름으로 파일 생성
+    with open(AUDIO, "wb") as out:
         out.write(audio_data)
         print('오디오 파일 생성')

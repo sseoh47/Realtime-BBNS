@@ -16,6 +16,21 @@ class ScanDelegate(DefaultDelegate):
         self.is_active = False
         print("beacon init")
 
+    def handleDiscovery(self, dev, isNewDev, isNewData):
+        try:
+            for (adtype, desc, value) in dev.getScanData():
+                if adtype == 9 and value in [BUS, STATION]:
+                    #print("Name:", value)
+                    #print("RSSI:", dev.rssi)
+                    # 직접 send_beacon 호출
+                    self.client.send_beacon(value, dev.rssi)
+
+        except KeyboardInterrupt:
+            print("Scanning stopped")
+        except Exception as e:
+            print(f"Error occurred while receiving message: {e}")
+
+
     def send_beacon_in_thread(self, beacon_name, rssi):
         if self.current_thread and self.current_thread.is_alive():
             self.is_active = False  # 현재 스레드에 종료 요청
@@ -46,7 +61,6 @@ class ScanDelegate(DefaultDelegate):
 if __name__ == "__main__":
     client = Client(SERVER_HOST, PORT)  # 이 부분에서 Client 클래스를 인스턴스화
     #print("환경변수:",os.getenv('GOOGLE_APPLICATION_CREDENTIALS'))
-
     scanner = Scanner().withDelegate(ScanDelegate(client))  # Client 인스턴스를 ScanDelegate에 전달
     try:
         while True:

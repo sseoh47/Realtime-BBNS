@@ -18,8 +18,8 @@ class ScanDelegate(DefaultDelegate):
         try:
             for (adtype, desc, value) in dev.getScanData():
                 if adtype == 9 and value in [BUS, STATION]:
-                    print("Name:", value)
-                    print("RSSI:", dev.rssi)
+                    #print("Name:", value)
+                    #print("RSSI:", dev.rssi)
                     # 직접 send_beacon 호출
                     self.client.send_beacon(value, dev.rssi)
 
@@ -44,7 +44,6 @@ class ScanDelegate(DefaultDelegate):
 if __name__ == "__main__":
     client = Client(SERVER_HOST, PORT)  # 이 부분에서 Client 클래스를 인스턴스화
     #print("환경변수:",os.getenv('GOOGLE_APPLICATION_CREDENTIALS'))
-
     scanner = Scanner().withDelegate(ScanDelegate(client))  # Client 인스턴스를 ScanDelegate에 전달
     try:
         while True:

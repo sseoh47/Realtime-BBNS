@@ -33,7 +33,7 @@ class Client:
         # 비콘 이름과 RSSI 값을 문자열로 결합하여 서버에 전송
         data = f"{beacon_name},{rssi}"
         self.sock.sendall(data.encode('utf-8'))
-        time.sleep(2.0)
+        time.sleep(1.0)
 
 
     def receive_messages(self):

@@ -2,7 +2,7 @@ from bluepy.btle import Scanner, DefaultDelegate
 from client import*  # 클라이언트 코드를 import
 from constant import*
 import os
-from button import*
+# from button import*
 
 
 BUS = "BUS"  

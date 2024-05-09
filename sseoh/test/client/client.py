@@ -2,10 +2,11 @@ import socket
 import threading
 import time
 from tts_api import*
-import playsound
 from beacon import*
 from pydub import AudioSegment
 from pydub.playback import play
+from playsound import playsound
+from constant import AUDIO
 
 
 class Client:
@@ -88,8 +89,8 @@ class Client:
                   
                         # audio = AudioSegment.from_file(AUDIO, format='mp3')
                         # play(audio)
-                        self.sound(AUDIO)
-                        #playsound.playsound(AUDIO)
+                        #self.sound(AUDIO)
+                        playsound(AUDIO)
                         print("wav 재생")
                         #os.remove(AUDIO) #생성된 파일 제거 # 다중 접속할때 permisson denined.해결용
                         self.previous_beacon_name = current_beacon_name

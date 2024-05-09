@@ -57,6 +57,12 @@ class Client:
         #         self.sock.close()
         #     print("클라이언트 종료")
 
+    def sound(self, AUDIO):
+        pygame.mixer.init()
+        sound = pygame.mixer.Sound(AUDIO)
+        sound.play()
+        time.sleep(1.5)
+        print('Congratulations! The Guesses is correct.')
 
 
     def receive_messages(self):
@@ -82,7 +88,7 @@ class Client:
                   
                         # audio = AudioSegment.from_file(AUDIO, format='mp3')
                         # play(audio)
-                        sound(AUDIO)
+                        self.sound(AUDIO)
                         #playsound.playsound(AUDIO)
                         print("wav 재생")
                         #os.remove(AUDIO) #생성된 파일 제거 # 다중 접속할때 permisson denined.해결용

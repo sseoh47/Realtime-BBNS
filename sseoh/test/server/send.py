@@ -6,6 +6,7 @@ class ClientNode:
     def __init__(self, client_socket, address):
         self.client_socket = client_socket
         self.address = address
+        
         self.last_name = None
         self.last_name_time = 0
         self.name_to_send = None

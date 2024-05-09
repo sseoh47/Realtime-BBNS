@@ -29,11 +29,10 @@ class ScanDelegate(DefaultDelegate):
     def handleDiscovery(self, dev, isNewDev, isNewData):
         try:
             for (adtype, desc, value) in dev.getScanData():
-                #print("for finding beacon")
-                if adtype == 9 and value in [BUS, STATION]:  # 조건 수정 필요
+                if adtype == 9 and value in [BUS, STATION]:
                     print("Name:", value)
                     print("RSSI:", dev.rssi)
-                    self.send_beacon_in_thread(value, dev.rssi)
+                    self.client.update_beacon_info(value, dev.rssi)  # 비콘 정보 업데이트 메소드 호출
 
         except KeyboardInterrupt:
             print("Scanning stopped")
@@ -47,7 +46,8 @@ if __name__ == "__main__":
     client = Client(SERVER_HOST, PORT)  # 이 부분에서 Client 클래스를 인스턴스화
     #print("환경변수:",os.getenv('GOOGLE_APPLICATION_CREDENTIALS'))
 
-    scanner = Scanner().withDelegate(ScanDelegate(client))  # Client 인스턴스를 ScanDelegate에 전달
+    client.send_beacon()  # 비콘 정보 전송 스레드 시작
+    scanner = Scanner().withDelegate(ScanDelegate(client))
     try:
         while True:
             print("scanner while")

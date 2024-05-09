@@ -23,18 +23,22 @@ class Client:
         self.previous_beacon_name = None
         self.buffer = ""
 
+        self.current_beacon_info = None  # 현재 비콘 정보를 저장할 변수 추가
+
     # init과 send_beacon 다시보기. 기존 send_beacon 안에 create_connection이 있었는데
     # send_beacon은 while문 내부에 있었음.
 
     # 비콘 이름, rssi는 비콘함수 추가 후 바꾸기
-    def send_beacon(self, beacon_name, rssi):
+     # send_beacon 메소드 수정
+    def update_beacon_info(self, beacon_name, rssi):
+        self.current_beacon_info = (beacon_name, rssi)  # 비콘 정보 업데이트
+
+    def send_beacon(self):
         print("send_beacon함수")
-       # 이전에 실행 중인 receive_thread가 있으면 종료
         if self.receive_thread_running:
             self.receive_thread_running = False
-            self.receive_thread.join()  # 이전 스레드가 종료될 때까지 기다립니다.
+            self.receive_thread.join()
 
-        # 새로운 receive_thread 시작
         self.receive_thread_running = True
         self.receive_thread = threading.Thread(target=self.receive_messages)
         self.receive_thread.start()
@@ -43,21 +47,17 @@ class Client:
         try:
             print("receive_beacon")
             while True:
-                # 비콘 이름과 RSSI 값을 문자열로 결합하여 서버에 전송
-                print("비콘정보전송")
-                data = f"{beacon_name},{rssi}"
-                self.sock.sendall(data.encode('utf-8'))
-                time.sleep(3) # 비콘 정보 전송 중, ctrlC누르기 전 다시 시작하면?
+                if self.current_beacon_info:
+                    beacon_name, rssi = self.current_beacon_info  # 업데이트된 비콘 정보 사용
+                    print("비콘정보전송")
+                    data = f"{beacon_name},{rssi}"
+                    self.sock.sendall(data.encode('utf-8'))
+                time.sleep(3)
 
         except KeyboardInterrupt:
             print('프로그램이 사용자에 의해 중단되었습니다.')
         except Exception as e:
             print('Error:', e)
-        # finally:
-        #     # 소켓 닫기
-        #     if self.sock:
-        #         self.sock.close()
-        #     print("클라이언트 종료")
 
 
     def receive_messages(self):

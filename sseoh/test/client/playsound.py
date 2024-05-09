@@ -1,4 +1,4 @@
 import playsound
 
 
-playsound('audio\\output.wav', block=False)
+playsound('audio//output.wav', block=False)

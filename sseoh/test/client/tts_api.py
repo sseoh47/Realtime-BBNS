@@ -6,14 +6,6 @@ import wave
 import time
 
 # pygame 사용
-def sound(AUDIO):
-    pygame.mixer.init()
-    sound = pygame.mixer.Sound(AUDIO)
-    sound.play()
-    time.sleep(1.5)
-    print('Congratulations! The Guesses is correct.')
-
-
 
 def text_to_speech(text):
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = GOOGLE_PATH

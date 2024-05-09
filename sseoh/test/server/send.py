@@ -29,7 +29,6 @@ class ClientNode:
                         client_node.last_name = name
                         client_node.last_name_time = current_time
                         client_node.name_to_send = name
-                        time.sleep(1.5)
                     else:
                         break
             finally:
@@ -45,7 +44,7 @@ class ClientNode:
                         message = f"{client_node.name_to_send}\n"
                         client_socket.sendall(message.encode())
                         client_node.name_to_send = None
-                    time.sleep(1.5)  # 1초마다 메시지 전송
+                    time.sleep(1)  # 1초마다 메시지 전송
             except Exception as e:
                 print(f"메시지 전송 중 오류 발생: {e}")
 

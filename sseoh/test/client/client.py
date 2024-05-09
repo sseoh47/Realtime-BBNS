@@ -11,53 +11,30 @@ from playsound import playsound
 
 
 class Client:
-    def __init__(self,server_host, server_port):
+    def __init__(self, server_host, server_port):
         print("클라이언트 연결됨")
-        # 서버에 접속
         self.sock = socket.create_connection((server_host, server_port))
         print("서버에 연결되었습니다.")
         
-        # 메시지 수신을 위한 스레드 시작
-        # 스레드 실행 상태를 확인하는 플래그
         self.receive_thread_running = False
         self.previous_beacon_name = None
         self.buffer = ""
+        # receive_messages 스레드 시작
+        self.start_receive_thread()
 
-    # init과 send_beacon 다시보기. 기존 send_beacon 안에 create_connection이 있었는데
-    # send_beacon은 while문 내부에 있었음.
+    def start_receive_thread(self):
+        if not self.receive_thread_running:
+            self.receive_thread_running = True
+            self.receive_thread = threading.Thread(target=self.receive_messages)
+            self.receive_thread.start()
+            print("receive_thread 스레드 시작됨")
 
-    # 비콘 이름, rssi는 비콘함수 추가 후 바꾸기
     def send_beacon(self, beacon_name, rssi):
         print("send_beacon함수")
-       # 이전에 실행 중인 receive_thread가 있으면 종료
-        if self.receive_thread_running:
-            self.receive_thread_running = False
-            self.receive_thread.join()  # 이전 스레드가 종료될 때까지 기다립니다.
+        # 비콘 이름과 RSSI 값을 문자열로 결합하여 서버에 전송
+        data = f"{beacon_name},{rssi}"
+        self.sock.sendall(data.encode('utf-8'))
 
-        # 새로운 receive_thread 시작
-        self.receive_thread_running = True
-        self.receive_thread = threading.Thread(target=self.receive_messages)
-        self.receive_thread.start()
-        print("receive_thread 스레드 시작됨")
-
-        try:
-            print("receive_beacon")
-            while True:
-                # 비콘 이름과 RSSI 값을 문자열로 결합하여 서버에 전송
-                print("비콘정보전송")
-                data = f"{beacon_name},{rssi}"
-                self.sock.sendall(data.encode('utf-8'))
-                time.sleep(3) # 비콘 정보 전송 중, ctrlC누르기 전 다시 시작하면?
-
-        except KeyboardInterrupt:
-            print('프로그램이 사용자에 의해 중단되었습니다.')
-        except Exception as e:
-            print('Error:', e)
-        # finally:
-        #     # 소켓 닫기
-        #     if self.sock:
-        #         self.sock.close()
-        #     print("클라이언트 종료")
 
 
     def receive_messages(self):

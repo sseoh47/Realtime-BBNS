@@ -8,20 +8,18 @@ from button import*
 BUS = "BUS"  
 STATION = "YU_UNIV" #다시 확인하기
 
-class ScanDelegate(DefaultDelegate):
+cclass ScanDelegate(DefaultDelegate):
     def __init__(self, client):
         DefaultDelegate.__init__(self)
-        self.client = client  # Client 인스턴스를 저장
-        self.current_thread = None
-        self.is_active = False
+        self.client = client
         print("beacon init")
 
     def handleDiscovery(self, dev, isNewDev, isNewData):
         try:
             for (adtype, desc, value) in dev.getScanData():
                 if adtype == 9 and value in [BUS, STATION]:
-                    #print("Name:", value)
-                    #print("RSSI:", dev.rssi)
+                    print("Name:", value)
+                    print("RSSI:", dev.rssi)
                     # 직접 send_beacon 호출
                     self.client.send_beacon(value, dev.rssi)
 

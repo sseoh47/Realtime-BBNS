@@ -29,6 +29,7 @@ class ClientNode:
                         client_node.last_name = name
                         client_node.last_name_time = current_time
                         client_node.name_to_send = name
+                        time.sleep(1)
                     else:
                         break
             finally:

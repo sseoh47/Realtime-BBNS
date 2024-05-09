@@ -33,7 +33,7 @@ class Client:
         # 비콘 이름과 RSSI 값을 문자열로 결합하여 서버에 전송
         data = f"{beacon_name},{rssi}"
         self.sock.sendall(data.encode('utf-8'))
-        time.sleep(1.0)
+        time.sleep(2.0)
 
 
     def receive_messages(self):
@@ -56,7 +56,7 @@ class Client:
                         print("current_beacon_name:",current_beacon_name)
                         text_to_speech(current_beacon_name)
                         # pip install playsound==1.2.2
-                        playsound(AUDIO)
+                        #playsound(AUDIO)
                         #os.remove(AUDIO) #생성된 파일 제거 # 다중 접속할때 permisson denined.해결용
                         self.previous_beacon_name = current_beacon_name
 

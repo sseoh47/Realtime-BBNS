@@ -15,7 +15,6 @@ class Client:
         print("클라이언트 연결됨")
         self.sock = socket.create_connection((server_host, server_port))
         print("서버에 연결되었습니다.")
-        
         self.receive_thread_running = False
         self.previous_beacon_name = None
         self.buffer = ""
@@ -34,6 +33,7 @@ class Client:
         # 비콘 이름과 RSSI 값을 문자열로 결합하여 서버에 전송
         data = f"{beacon_name},{rssi}"
         self.sock.sendall(data.encode('utf-8'))
+        time.sleep(1.0)
 
 
     def receive_messages(self):

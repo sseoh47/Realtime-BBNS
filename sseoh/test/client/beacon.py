@@ -18,8 +18,8 @@ class ScanDelegate(DefaultDelegate):
         try:
             for (adtype, desc, value) in dev.getScanData():
                 if adtype == 9 and value in [BUS, STATION]:
-                    print("Name:", value)
-                    print("RSSI:", dev.rssi)
+                    #print("Name:", value)
+                    #print("RSSI:", dev.rssi)
                     # 직접 send_beacon 호출
                     self.client.send_beacon(value, dev.rssi)
 
@@ -27,7 +27,6 @@ class ScanDelegate(DefaultDelegate):
             print("Scanning stopped")
         except Exception as e:
             print(f"Error occurred while receiving message: {e}")
-
 
 
     def send_beacon_in_thread(self, beacon_name, rssi):

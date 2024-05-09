@@ -29,6 +29,7 @@ class ScanDelegate(DefaultDelegate):
             print(f"Error occurred while receiving message: {e}")
 
 
+
     def send_beacon_in_thread(self, beacon_name, rssi):
         if self.current_thread and self.current_thread.is_alive():
             self.is_active = False  # 현재 스레드에 종료 요청
@@ -38,7 +39,6 @@ class ScanDelegate(DefaultDelegate):
         # Client 인스턴스의 send_beacon 메소드를 호출
         self.current_thread = threading.Thread(target=self.client.send_beacon, args=(beacon_name, rssi))
         self.current_thread.start()
-    
 
 
 
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     try:
         while True:
             print("scanner while")
-            devices = scanner.scan(2.0)  # 2초 동안 스캔
+            devices = scanner.scan(1.0)  # 2초 동안 스캔
 
     except KeyboardInterrupt:
         print("scann stop")

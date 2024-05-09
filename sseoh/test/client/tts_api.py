@@ -7,7 +7,7 @@ import time
 
 # pygame 사용
 def sound(AUDIO):
-    #pygame.mixer.init()
+    pygame.mixer.init()
 
     sound = pygame.mixer.Sound(AUDIO)
 

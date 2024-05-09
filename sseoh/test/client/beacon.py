@@ -48,7 +48,7 @@ if __name__ == "__main__":
     try:
         while True:
             print("scanner while")
-            devices = scanner.scan(1.0)  # 2초 동안 스캔
+            devices = scanner.scan(2.0)  # 2초 동안 스캔
 
     except KeyboardInterrupt:
         print("scann stop")

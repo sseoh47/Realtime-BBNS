@@ -7,7 +7,7 @@ from pydub import AudioSegment
 from pydub.playback import play
 from playsound import playsound
 from constant import AUDIO
-
+from trysound import sound
 
 class Client:
     def __init__(self,server_host, server_port):
@@ -92,7 +92,7 @@ class Client:
                         #self.sound(AUDIO)
                         time.sleep(1.5)
                         print("playsound시작")
-                        playsound(AUDIO)
+                        sound
                         print("wav 재생")
                         #os.remove(AUDIO) #생성된 파일 제거 # 다중 접속할때 permisson denined.해결용
                         self.previous_beacon_name = current_beacon_name

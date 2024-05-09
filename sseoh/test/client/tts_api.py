@@ -7,14 +7,16 @@ import time
 
 # pygame 사용
 def sound(AUDIO):
-    pygame.mixer.init()
-    pygame.mixer.music.load(AUDIO)
+    #pygame.mixer.init()
 
-    pygame.mixer.music.play()
-    time.sleep(3.0)
-    while pygame.mixer.music.get_busy() == True:
-        print("*")
-        continue
+    sound = pygame.mixer.Sound(AUDIO)
+
+    sound.play()
+
+    time.sleep(1.5)
+
+    print('Congratulations! The Guesses is correct.')
+
 
 
 def text_to_speech(text):

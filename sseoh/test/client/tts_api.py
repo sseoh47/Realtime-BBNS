@@ -3,6 +3,7 @@ from google.cloud import texttospeech
 import os
 import pygame
 import wave
+import time
 
 # pygame 사용
 def sound(AUDIO):
@@ -10,6 +11,7 @@ def sound(AUDIO):
     pygame.mixer.music.load(AUDIO)
 
     pygame.mixer.music.play()
+    time.sleep(3.0)
     while pygame.mixer.music.get_busy() == True:
         print("*")
         continue

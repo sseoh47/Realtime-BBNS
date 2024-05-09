@@ -38,20 +38,6 @@ class ScanDelegate(DefaultDelegate):
         # Client 인스턴스의 send_beacon 메소드를 호출
         self.current_thread = threading.Thread(target=self.client.send_beacon, args=(beacon_name, rssi))
         self.current_thread.start()
-
-    def handleDiscovery(self, dev, isNewDev, isNewData):
-        try:
-            for (adtype, desc, value) in dev.getScanData():
-                #print("for finding beacon")
-                if adtype == 9 and value in [BUS, STATION]:  # 조건 수정 필요
-                    print("Name:", value)
-                    print("RSSI:", dev.rssi)
-                    self.send_beacon_in_thread(value, dev.rssi)
-
-        except KeyboardInterrupt:
-            print("Scanning stopped")
-        except Exception as e:
-            print(f"Error occurred while receiving message: {e}")
     
 
 

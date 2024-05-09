@@ -5,9 +5,10 @@ from tts_api import*
 from beacon import*
 from pydub import AudioSegment
 from pydub.playback import play
-from playsound import playsound
+
 from constant import AUDIO
-from trysound import sound
+from playsound import playsound
+
 
 class Client:
     def __init__(self,server_host, server_port):
@@ -58,13 +59,6 @@ class Client:
         #         self.sock.close()
         #     print("클라이언트 종료")
 
-    def sound(self, AUDIO):
-        pygame.mixer.init()
-        sound = pygame.mixer.Sound(AUDIO)
-        sound.play()
-        time.sleep(1.5)
-        print('Congratulations! The Guesses is correct.')
-
 
     def receive_messages(self):
         try:
@@ -86,14 +80,14 @@ class Client:
                         print("current_beacon_name:",current_beacon_name)
                         text_to_speech(current_beacon_name)
                         # pip install playsound==1.2.2
-                  
+                        time.sleep(1.0)
+                        playsound(AUDIO)
+                        time.sleep(1.5)
+                        print("wav 재생완료")
                         # audio = AudioSegment.from_file(AUDIO, format='mp3')
                         # play(audio)
                         #self.sound(AUDIO)
-                        time.sleep(1.5)
-                        print("playsound시작")
-                        playsound(AUDIO)
-                        print("wav 재생")
+                 
                         #os.remove(AUDIO) #생성된 파일 제거 # 다중 접속할때 permisson denined.해결용
                         self.previous_beacon_name = current_beacon_name
 

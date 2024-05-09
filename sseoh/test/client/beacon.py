@@ -8,7 +8,7 @@ from button import*
 BUS = "BUS"  
 STATION = "YU_UNIV" #다시 확인하기
 
-cclass ScanDelegate(DefaultDelegate):
+class ScanDelegate(DefaultDelegate):
     def __init__(self, client):
         DefaultDelegate.__init__(self)
         self.client = client

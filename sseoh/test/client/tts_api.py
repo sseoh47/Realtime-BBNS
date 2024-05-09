@@ -11,6 +11,7 @@ def sound(AUDIO):
 
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy() == True:
+        print("*")
         continue
 
 

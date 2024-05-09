@@ -5,12 +5,11 @@ import pygame
 import wave
 
 # pygame 사용
-def sound():
+def sound(AUDIO):
     pygame.mixer.init()
     pygame.mixer.music.load(AUDIO)
 
     pygame.mixer.music.play()
-
     while pygame.mixer.music.get_busy() == True:
         continue
 

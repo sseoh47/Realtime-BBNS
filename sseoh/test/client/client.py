@@ -82,7 +82,7 @@ class Client:
                   
                         # audio = AudioSegment.from_file(AUDIO, format='mp3')
                         # play(audio)
-                        sound()
+                        sound(AUDIO)
                         #playsound.playsound(AUDIO)
                         print("wav 재생")
                         #os.remove(AUDIO) #생성된 파일 제거 # 다중 접속할때 permisson denined.해결용

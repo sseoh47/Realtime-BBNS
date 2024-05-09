@@ -3,7 +3,7 @@
 TMAP_APPKEY = "wuLynpCfphaaJZkwoId0w4AWaJb9mbht1IVtIX0K"  # __ 혜림
 #티맵키 교체 완료
 
-HOST = "172.20.10.6"
+HOST = "172.20.10.4"
 PORT = 9999
 
 BUFFER_SIZE = 1024

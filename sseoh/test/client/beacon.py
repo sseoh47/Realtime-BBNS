@@ -54,7 +54,6 @@ class ScanDelegate(DefaultDelegate):
         self.current_thread.start()
 
 
-
 if __name__ == "__main__":
     client = Client(SERVER_HOST, PORT)  # 이 부분에서 Client 클래스를 인스턴스화
     #print("환경변수:",os.getenv('GOOGLE_APPLICATION_CREDENTIALS'))
